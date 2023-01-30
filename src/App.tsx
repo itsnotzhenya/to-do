@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container } from '@mui/material';
 import { Header } from './components/Header';
+import { TasksList } from './components/TasksList';
 import { Wrapper } from './styles';
 
 export const App = () => {
@@ -32,7 +33,7 @@ export const App = () => {
     <Wrapper>
       <Container>
         <Header />
-        {/* TasksList */}
+        <TasksList tasks={tasks} />
       </Container>
     </Wrapper>
   );
