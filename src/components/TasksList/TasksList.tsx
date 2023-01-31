@@ -1,23 +1,21 @@
 import React from 'react';
-import { TasksList as StyledTasksList, TaskCard } from './styles';
-
-export type Task = {
-  id: number;
-  title: string;
-  isDone: boolean;
-  date: Date;
-  description?: string;
-};
-
-type TasksListProps = {
-  tasks: Task[];
-};
+import { TasksListProps } from '../../types';
+import { TaskCard } from '../TaskCard';
+import { TaskRecord } from '../../types';
+import { TasksList as StyledTasksList } from './styles';
 
 export const TasksList = ({ tasks }: TasksListProps) => {
+  const taskArray: Array<TaskRecord> = [];
+
+  for (let [key, value] of Object.entries(tasks)) {
+    console.log(key, value);
+    taskArray.push([`${key}`, value]);
+  }
+
   return (
     <StyledTasksList>
-      {tasks.map((task) => (
-        <TaskCard key={task.id}>{task.title}</TaskCard>
+      {taskArray.map((task: TaskRecord) => (
+        <TaskCard task={task} />
       ))}
     </StyledTasksList>
   );
