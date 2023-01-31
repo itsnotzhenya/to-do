@@ -3,6 +3,7 @@ export type Task = {
   title: string;
   isDone: boolean;
   date: Date;
+  priority: Priority;
   description?: string;
 };
 
@@ -15,3 +16,9 @@ export type TaskRecord = [key: string, data: Task[]];
 export type TaskCardProps = {
   task: TaskRecord;
 };
+
+export enum Priority {
+  High = 'high',
+  Medium = 'medium',
+  Default = 'default',
+}

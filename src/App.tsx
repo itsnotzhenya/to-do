@@ -3,7 +3,7 @@ import { Container } from '@mui/material';
 import { Header } from './components/Header';
 import { TasksList } from './components/TasksList';
 import { groupBy } from './utils';
-import { Task } from './types';
+import { Task, Priority } from './types';
 import { Wrapper } from './styles';
 
 export const App = () => {
@@ -18,6 +18,7 @@ export const App = () => {
       description: undefined,
       date: today,
       isDone: false,
+      priority: Priority.Default,
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ export const App = () => {
       description: 'Treats & Dental Sticks',
       date: today,
       isDone: false,
+      priority: Priority.Medium,
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ export const App = () => {
       description: 'After 6pm',
       date: today,
       isDone: false,
+      priority: Priority.High,
     },
     {
       id: 4,
@@ -39,6 +42,7 @@ export const App = () => {
       description: undefined,
       date: tomorrow,
       isDone: false,
+      priority: Priority.High,
     },
   ];
 
