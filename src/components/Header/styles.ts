@@ -15,4 +15,5 @@ export const Header = styled('div')(() => ({
   justifyContent: 'space-between',
   width: '100%',
   marginBottom: '20px',
+  paddingTop: '15px',
 }));
