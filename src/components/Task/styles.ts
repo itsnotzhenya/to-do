@@ -1,22 +1,11 @@
-import { Card } from '@mui/material';
 import styled from '@mui/styled-engine';
-
-export const TaskCard = styled(Card)(() => ({
-  fontColor: '#fff',
-  marginBottom: '32px',
-  background: '#282828',
-  boxShadow:
-    '16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)',
-  borderRadius: '40px',
-  padding: '14px 35px',
-}));
 
 export const Record = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
   flexDirection: 'row' as 'row',
-  marginBottom: '16px',
+  margin: '20px 0',
 }));
 
 export const Title = styled('h2')(() => ({

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Priority } from '../../types';
-import { High, Medium, Line as DefaultLine } from './styles';
+import { High, Medium, Low, Line as DefaultLine } from './styles';
 
 type LineProps = {
-  priority: Priority;
+  priority?: Priority;
 };
 
 export const Line = ({ priority }: LineProps) => {
@@ -11,6 +11,8 @@ export const Line = ({ priority }: LineProps) => {
     <High />
   ) : priority === Priority.Medium ? (
     <Medium />
+  ) : priority === Priority.Low ? (
+    <Low />
   ) : (
     <DefaultLine />
   );

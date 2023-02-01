@@ -5,7 +5,7 @@ export const Line = styled('div')(() => ({
   width: '5px',
   marginRight: '14px',
   borderRadius: '3px',
-  background: '#366EFF',
+  background: '#A9A9A9',
 }));
 
 export const High = styled(Line)(() => ({
@@ -14,4 +14,8 @@ export const High = styled(Line)(() => ({
 
 export const Medium = styled(Line)(() => ({
   background: '#FFEB33',
+}));
+
+export const Low = styled(Line)(() => ({
+  background: '#366EFF',
 }));

@@ -46,10 +46,7 @@ export const App = () => {
     },
   ];
 
-  const groupedTasks = groupBy(
-    tasks,
-    (task) => `${task.date.getDate()} ${task.date.getMonth()}` as string
-  );
+  const groupedTasks = groupBy(tasks, (task) => task.date.toString());
 
   return (
     <Wrapper>
