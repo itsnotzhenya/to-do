@@ -1,11 +1,11 @@
 import React from 'react';
 import { Checkbox, Collapse } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { TasksListProps, TaskRecord } from '../../types';
+import { TasksListProps, TaskRecord, TextType } from '../../types';
 import { TaskItem } from '../Task';
 import { CardItem } from '../Task/CardItem';
-import { TasksList as StyledTasksList, StyledCard } from './styles';
-import { Row, Title } from '../Task/styles';
+import { Text } from '../Text';
+import { TasksList as StyledTasksList, StyledCard, Row } from './styles';
 
 export const TasksList = ({ tasks }: TasksListProps) => {
   const dateToEpoch = (d: Date) => d.setHours(0, 0, 0, 0);
@@ -40,9 +40,8 @@ export const TasksList = ({ tasks }: TasksListProps) => {
                   },
                 }}
               />
-              <Title>Today Tasks:</Title>
+              <Text content="Today Tasks:" type={TextType.SECONDARY_TEXT} />
             </Row>
-
             <StyledCard>
               {tasks.map((task) => (
                 <TaskItem task={task} />
@@ -50,10 +49,11 @@ export const TasksList = ({ tasks }: TasksListProps) => {
             </StyledCard>
           </>
         ) : (
-          <StyledCard onClick={handleClick}>
+          <StyledCard>
             <CardItem
               title={tomorrow ? 'Tomorrow Tasks' : `${dateToDo} Tasks`}
               isExpanded={open}
+              onClick={handleClick}
             />
             <Collapse in={open} timeout="auto" unmountOnExit>
               {tasks.map((task) => (

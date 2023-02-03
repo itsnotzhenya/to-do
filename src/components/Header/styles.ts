@@ -1,19 +1,8 @@
 import { styled } from '@mui/material/styles';
 
-export const Title = styled('h1')(() => ({
-  fontFamily: `'Actor', sans-serif`,
-  fontStyle: 'normal',
-  fontWeight: '400',
-  fontSize: '36px',
-  lineHeight: '43px',
-  color: '#f4f4f4',
-  margin: '0',
-}));
-
 export const Header = styled('div')(() => ({
   display: 'flex',
   justifyContent: 'space-between',
+  padding: '15px 35px 20px',
   width: '100%',
-  marginBottom: '20px',
-  paddingTop: '15px',
 }));

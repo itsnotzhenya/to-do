@@ -8,19 +8,21 @@ const Outer = styled('div')(() => ({
   height: '24px',
   borderRadius: '50%',
   background: '#fff',
+  color: '#000',
+  cursor: 'pointer',
 }));
 
-export const ArrowUp = () => {
+export const ArrowUp = ({ handleClick }: { handleClick: () => void }) => {
   return (
-    <Outer>
+    <Outer onClick={handleClick}>
       <ExpandLess />
     </Outer>
   );
 };
 
-export const ArrowDown = () => {
+export const ArrowDown = ({ handleClick }: { handleClick: () => void }) => {
   return (
-    <Outer>
+    <Outer onClick={handleClick}>
       <ExpandMore />
     </Outer>
   );

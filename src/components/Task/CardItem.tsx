@@ -1,23 +1,30 @@
 import React from 'react';
 import { Line } from '../Line';
-import { Record, TaskRow, Title, Description, Block } from './styles';
 import { ArrowUp, ArrowDown } from '../Icons/Arrows';
+import { Text } from '../Text';
+import { Record, TaskRow, Block } from './styles';
+import { TextType } from '../../types';
 
 type CardItemProps = {
   title: string;
   isExpanded: boolean;
+  onClick: () => void;
 };
 
-export const CardItem = ({ title, isExpanded }: CardItemProps) => {
+export const CardItem = ({ title, isExpanded, onClick }: CardItemProps) => {
   return (
     <Record>
       <Block>
         <Line />
         <TaskRow>
-          <Title>{title}</Title>
+          <Text content={title} type={TextType.SECONDARY_TEXT} />
         </TaskRow>
       </Block>
-      {isExpanded ? <ArrowUp /> : <ArrowDown />}
+      {isExpanded ? (
+        <ArrowUp handleClick={onClick} />
+      ) : (
+        <ArrowDown handleClick={onClick} />
+      )}
     </Record>
   );
 };
