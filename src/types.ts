@@ -13,12 +13,9 @@ export type TasksListProps = {
 
 export type TaskRecord = [key: string, data: Task[]];
 
-export type TaskCardProps = {
-  task: TaskRecord;
-};
-
 export enum Priority {
   High = 'high',
   Medium = 'medium',
+  Low = 'low',
   Default = 'default',
 }
