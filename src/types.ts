@@ -19,3 +19,9 @@ export enum Priority {
   Low = 'low',
   Default = 'default',
 }
+
+export enum TextType {
+  PRIMARY_TEXT = 'primary_text',
+  SECONDARY_TEXT = 'secondary_text',
+  DESCRIPTION = 'description',
+}
