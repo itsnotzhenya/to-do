@@ -1,5 +1,5 @@
-import React from 'react';
-import { Switch } from '@mui/material';
+import React, { useState } from 'react';
+import { Switch } from '../Switch';
 import { Task as TaskType } from '../../types';
 import { Line } from '../Line';
 import { Text } from '../Text';
@@ -11,6 +11,7 @@ type TaskProps = {
 };
 
 export const TaskItem = ({ task }: TaskProps) => {
+  const [isDone, setIsDone] = useState(false);
   const handleChange = () => {
     console.log('changed');
   };
@@ -25,8 +26,9 @@ export const TaskItem = ({ task }: TaskProps) => {
         </TaskRow>
       </Block>
       <Switch
-        checked={task.isDone}
-        onChange={handleChange}
+        sx={{ m: 1 }}
+        checked={isDone}
+        onChange={() => setIsDone(!isDone)}
         inputProps={{ 'aria-label': 'controlled' }}
       />
     </Record>
