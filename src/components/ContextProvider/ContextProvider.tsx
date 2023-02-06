@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { createContext } from 'react';
+import React, { useState, useCallback, createContext } from 'react';
+import { nanoid } from 'nanoid';
 import { Priority, Task } from '../../types';
 
 type Props = {
@@ -8,12 +8,12 @@ type Props = {
 
 type ContextType = {
   tasks: Array<Task>;
-  setTasks: (tasks: Array<Task>) => void;
+  updateTaskStatus: (id: string, isDone: boolean) => void;
 };
 
 export const Context = createContext<ContextType>({
   tasks: [],
-  setTasks: () => {},
+  updateTaskStatus: () => {},
 });
 
 const today = new Date();
@@ -22,7 +22,7 @@ tomorrow.setDate(today.getDate() + 1);
 
 const initialValue: Array<Task> = [
   {
-    id: 1,
+    id: nanoid(),
     title: 'Clean the room',
     description: undefined,
     date: today,
@@ -30,7 +30,7 @@ const initialValue: Array<Task> = [
     priority: Priority.Low,
   },
   {
-    id: 2,
+    id: nanoid(),
     title: 'Buy dog food',
     description: 'Treats & Dental Sticks',
     date: today,
@@ -38,7 +38,7 @@ const initialValue: Array<Task> = [
     priority: Priority.Low,
   },
   {
-    id: 3,
+    id: nanoid(),
     title: 'Call Mom',
     description: 'After 6pm',
     date: today,
@@ -46,7 +46,7 @@ const initialValue: Array<Task> = [
     priority: Priority.Low,
   },
   {
-    id: 4,
+    id: nanoid(),
     title: 'Call Dad',
     description: undefined,
     date: tomorrow,
@@ -57,7 +57,23 @@ const initialValue: Array<Task> = [
 
 export const ContextProvider = ({ children }: Props) => {
   const [tasks, setTasks] = useState(initialValue);
+
+  const updateTaskStatus = useCallback(
+    (id: string, isDone: boolean) => {
+      const newTasks = tasks.map((task) => {
+        if (id === task.id) {
+          return { ...task, isDone };
+        }
+        return task;
+      });
+      setTasks(newTasks);
+    },
+    [tasks, setTasks]
+  );
+
   return (
-    <Context.Provider value={{ tasks, setTasks }}>{children}</Context.Provider>
+    <Context.Provider value={{ tasks, updateTaskStatus }}>
+      {children}
+    </Context.Provider>
   );
 };

@@ -10,7 +10,7 @@ import { TasksList as StyledTasksList, StyledCard, Row } from './styles';
 import { Context } from '../ContextProvider';
 
 export const TasksList = () => {
-  const { tasks, setTasks } = useContext(Context);
+  const { tasks, updateTaskStatus } = useContext(Context);
   const groupedTasks = groupBy(tasks, (task) => task.date.toString());
 
   const dateToEpoch = (d: Date) => d.setHours(0, 0, 0, 0);
@@ -49,7 +49,7 @@ export const TasksList = () => {
             </Row>
             <StyledCard>
               {tasks.map((task) => (
-                <TaskItem task={task} />
+                <TaskItem task={task} updateTaskStatus={updateTaskStatus} />
               ))}
             </StyledCard>
           </>
@@ -62,7 +62,7 @@ export const TasksList = () => {
             />
             <Collapse in={open} timeout="auto" unmountOnExit>
               {tasks.map((task) => (
-                <TaskItem task={task} />
+                <TaskItem task={task} updateTaskStatus={updateTaskStatus} />
               ))}
             </Collapse>
           </StyledCard>
