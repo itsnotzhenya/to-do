@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Checkbox, Collapse } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { TasksListProps, TaskRecord, TextType } from '../../types';
+import { TaskRecord, TextType } from '../../types';
 import { TaskItem } from '../Task';
 import { CardItem } from '../Task/CardItem';
 import { Text } from '../Text';
+import { groupBy } from '../../utils';
 import { TasksList as StyledTasksList, StyledCard, Row } from './styles';
+import { Context } from '../ContextProvider';
 
-export const TasksList = ({ tasks }: TasksListProps) => {
+export const TasksList = () => {
+  const { tasks, setTasks } = useContext(Context);
+  const groupedTasks = groupBy(tasks, (task) => task.date.toString());
+
   const dateToEpoch = (d: Date) => d.setHours(0, 0, 0, 0);
 
-  const tasksByDate = Object.entries(tasks);
+  const tasksByDate = Object.entries(groupedTasks);
   const today = dateToEpoch(new Date());
 
   const [open, setOpen] = React.useState(false);
