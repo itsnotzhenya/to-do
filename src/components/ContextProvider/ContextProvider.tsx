@@ -27,7 +27,7 @@ const initialValue: Array<Task> = [
     description: undefined,
     date: today,
     isDone: false,
-    priority: Priority.Low,
+    priority: 'low',
   },
   {
     id: nanoid(),
@@ -35,7 +35,7 @@ const initialValue: Array<Task> = [
     description: 'Treats & Dental Sticks',
     date: today,
     isDone: false,
-    priority: Priority.Low,
+    priority: 'high',
   },
   {
     id: nanoid(),
@@ -43,7 +43,7 @@ const initialValue: Array<Task> = [
     description: 'After 6pm',
     date: today,
     isDone: false,
-    priority: Priority.Low,
+    priority: 'medium',
   },
   {
     id: nanoid(),
@@ -51,7 +51,14 @@ const initialValue: Array<Task> = [
     description: undefined,
     date: tomorrow,
     isDone: false,
-    priority: Priority.Low,
+    priority: 'medium',
+  },
+  {
+    id: nanoid(),
+    title: 'Cook the dinner',
+    description: undefined,
+    date: tomorrow,
+    isDone: false,
   },
 ];
 
