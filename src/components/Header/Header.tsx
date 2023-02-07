@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
 import { SettingsIcon } from '../Icons/SettingsIcon';
 import { Text } from '../Text';
 import { Switch } from '../Switch';
 import { TextType } from '../../types';
+import { NewsContext } from '../NewsContextProvider';
 
 export const Header = () => {
+  const { isNewsShown, changeNewsDisplay } = useContext(NewsContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -54,8 +56,8 @@ export const Header = () => {
               <Text content="Show news" type={TextType.SECONDARY_TEXT} />
               <Switch
                 sx={{ m: 1 }}
-                checked={false}
-                onChange={() => console.log('update')}
+                checked={isNewsShown}
+                onChange={changeNewsDisplay}
               />
             </MenuItem>
           </Menu>

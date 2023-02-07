@@ -6,11 +6,11 @@ import { TaskItem } from '../Task';
 import { CardItem } from '../Task/CardItem';
 import { Text } from '../Text';
 import { groupBy } from '../../utils';
+import { TasksContext } from '../TasksContextProvider';
 import { TasksList as StyledTasksList, StyledCard, Row } from './styles';
-import { Context } from '../ContextProvider';
 
 export const TasksList = () => {
-  const { tasks, updateTaskStatus } = useContext(Context);
+  const { tasks, updateTaskStatus } = useContext(TasksContext);
   const groupedTasks = groupBy(tasks, (task) => task.date.toString());
 
   const dateToEpoch = (d: Date) => d.setHours(0, 0, 0, 0);

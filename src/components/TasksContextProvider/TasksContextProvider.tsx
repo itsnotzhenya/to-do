@@ -1,17 +1,17 @@
 import React, { useState, useCallback, createContext } from 'react';
 import { nanoid } from 'nanoid';
-import { Priority, Task } from '../../types';
+import { Task } from '../../types';
 
 type Props = {
   children: JSX.Element;
 };
 
-type ContextType = {
+type TasksContextType = {
   tasks: Array<Task>;
   updateTaskStatus: (id: string, isDone: boolean) => void;
 };
 
-export const Context = createContext<ContextType>({
+export const TasksContext = createContext<TasksContextType>({
   tasks: [],
   updateTaskStatus: () => {},
 });
@@ -62,7 +62,7 @@ const initialValue: Array<Task> = [
   },
 ];
 
-export const ContextProvider = ({ children }: Props) => {
+export const TasksContextProvider = ({ children }: Props) => {
   const [tasks, setTasks] = useState(initialValue);
 
   const updateTaskStatus = useCallback(
@@ -79,8 +79,8 @@ export const ContextProvider = ({ children }: Props) => {
   );
 
   return (
-    <Context.Provider value={{ tasks, updateTaskStatus }}>
+    <TasksContext.Provider value={{ tasks, updateTaskStatus }}>
       {children}
-    </Context.Provider>
+    </TasksContext.Provider>
   );
 };
