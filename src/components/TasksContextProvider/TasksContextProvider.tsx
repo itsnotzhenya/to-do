@@ -1,61 +1,67 @@
 import React, { useState, useCallback, createContext } from 'react';
 import { nanoid } from 'nanoid';
-import { Priority, Task } from '../../types';
+import { Task } from '../../types';
 
 type Props = {
   children: JSX.Element;
 };
 
-type ContextType = {
+type TasksContextType = {
   tasks: Array<Task>;
   updateTaskStatus: (id: string, isDone: boolean) => void;
 };
 
-export const Context = createContext<ContextType>({
+export const TasksContext = createContext<TasksContextType>({
   tasks: [],
   updateTaskStatus: () => {},
 });
 
-const today = new Date();
-let tomorrow = new Date();
-tomorrow.setDate(today.getDate() + 1);
+const getDateAfterToday = (numberDaysAfter: number) =>
+  new Date(new Date().setDate(new Date().getDate() + numberDaysAfter));
 
 const initialValue: Array<Task> = [
   {
     id: nanoid(),
     title: 'Clean the room',
     description: undefined,
-    date: today,
+    date: new Date(),
     isDone: false,
-    priority: Priority.Low,
+    priority: 'low',
   },
   {
     id: nanoid(),
     title: 'Buy dog food',
     description: 'Treats & Dental Sticks',
-    date: today,
+    date: new Date(),
     isDone: false,
-    priority: Priority.Low,
+    priority: 'high',
   },
   {
     id: nanoid(),
     title: 'Call Mom',
     description: 'After 6pm',
-    date: today,
+    date: new Date(),
     isDone: false,
-    priority: Priority.Low,
+    priority: 'medium',
   },
   {
     id: nanoid(),
     title: 'Call Dad',
     description: undefined,
-    date: tomorrow,
+    date: getDateAfterToday(1),
     isDone: false,
-    priority: Priority.Low,
+    priority: 'medium',
+  },
+  {
+    id: nanoid(),
+    title: 'Cook the dinner',
+    description: undefined,
+    date: getDateAfterToday(2),
+    isDone: false,
   },
 ];
 
-export const ContextProvider = ({ children }: Props) => {
+export const TasksContextProvider = ({ children }: Props) => {
   const [tasks, setTasks] = useState(initialValue);
 
   const updateTaskStatus = useCallback(
@@ -72,8 +78,8 @@ export const ContextProvider = ({ children }: Props) => {
   );
 
   return (
-    <Context.Provider value={{ tasks, updateTaskStatus }}>
+    <TasksContext.Provider value={{ tasks, updateTaskStatus }}>
       {children}
-    </Context.Provider>
+    </TasksContext.Provider>
   );
 };

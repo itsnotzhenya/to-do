@@ -3,7 +3,7 @@ export type Task = {
   title: string;
   isDone: boolean;
   date: Date;
-  priority: Priority;
+  priority?: Priority;
   description?: string;
 };
 
@@ -13,12 +13,7 @@ export type TasksListProps = {
 
 export type TaskRecord = [key: string, data: Task[]];
 
-export enum Priority {
-  High = 'high',
-  Medium = 'medium',
-  Low = 'low',
-  Default = 'default',
-}
+export type Priority = 'high' | 'medium' | 'low';
 
 export enum TextType {
   PRIMARY_TEXT = 'primary_text',

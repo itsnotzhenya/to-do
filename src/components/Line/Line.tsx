@@ -7,13 +7,14 @@ type LineProps = {
 };
 
 export const Line = ({ priority }: LineProps) => {
-  return priority === Priority.High ? (
-    <High />
-  ) : priority === Priority.Medium ? (
-    <Medium />
-  ) : priority === Priority.Low ? (
-    <Low />
-  ) : (
-    <DefaultLine />
-  );
+  switch (priority) {
+    case 'high':
+      return <High />;
+    case 'medium':
+      return <Medium />;
+    case 'low':
+      return <Low />;
+    default:
+      return <DefaultLine />;
+  }
 };
