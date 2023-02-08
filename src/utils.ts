@@ -10,3 +10,14 @@ export const getter = (url: string) => () =>
     .catch((error) => {
       throw new Error(error);
     });
+
+export const dateToEpoch = (d: Date) => d.setHours(0, 0, 0, 0);
+
+export const getFormattedDate = (dateInMs: number) => {
+  const date = new Date(dateInMs);
+  const rawMonth = date.getMonth() + 1;
+  const month = rawMonth < 10 ? `0${rawMonth}` : rawMonth;
+  const day = date.getDate();
+
+  return `${day}/${month}`;
+};
