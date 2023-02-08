@@ -16,16 +16,15 @@ export const TasksContext = createContext<TasksContextType>({
   updateTaskStatus: () => {},
 });
 
-const today = new Date();
-let tomorrow = new Date();
-tomorrow.setDate(today.getDate() + 1);
+const getDateAfterToday = (numberDaysAfter: number) =>
+  new Date(new Date().setDate(new Date().getDate() + numberDaysAfter));
 
 const initialValue: Array<Task> = [
   {
     id: nanoid(),
     title: 'Clean the room',
     description: undefined,
-    date: today,
+    date: new Date(),
     isDone: false,
     priority: 'low',
   },
@@ -33,7 +32,7 @@ const initialValue: Array<Task> = [
     id: nanoid(),
     title: 'Buy dog food',
     description: 'Treats & Dental Sticks',
-    date: today,
+    date: new Date(),
     isDone: false,
     priority: 'high',
   },
@@ -41,7 +40,7 @@ const initialValue: Array<Task> = [
     id: nanoid(),
     title: 'Call Mom',
     description: 'After 6pm',
-    date: today,
+    date: new Date(),
     isDone: false,
     priority: 'medium',
   },
@@ -49,7 +48,7 @@ const initialValue: Array<Task> = [
     id: nanoid(),
     title: 'Call Dad',
     description: undefined,
-    date: tomorrow,
+    date: getDateAfterToday(1),
     isDone: false,
     priority: 'medium',
   },
@@ -57,7 +56,7 @@ const initialValue: Array<Task> = [
     id: nanoid(),
     title: 'Cook the dinner',
     description: undefined,
-    date: tomorrow,
+    date: getDateAfterToday(2),
     isDone: false,
   },
 ];
