@@ -8,11 +8,15 @@ type Props = {
 
 type NewsContextType = {
   isNewsShown: boolean;
+  news: string | null;
+  url: string | null;
   changeNewsDisplay: () => void;
 };
 
 export const NewsContext = createContext<NewsContextType>({
   isNewsShown: true,
+  news: null,
+  url: null,
   changeNewsDisplay: () => {},
 });
 
@@ -27,7 +31,8 @@ export const NewsContextProvider = ({ children }: Props) => {
 
   const topStoriesQuery = useQuery('topnews', getter(TOP_NEWS_URL));
 
-  const storyUrl = GET_STORY_URL(topStoriesQuery.data?.[0] ?? '1');
+  const storyUrl = GET_STORY_URL(topStoriesQuery.data?.[0]);
+
   const { data } = useQuery('story', getter(storyUrl), {
     enabled: !topStoriesQuery.isFetching,
   });
@@ -38,7 +43,13 @@ export const NewsContextProvider = ({ children }: Props) => {
   );
 
   return (
-    <NewsContext.Provider value={{ isNewsShown, changeNewsDisplay }}>
+    <NewsContext.Provider
+      value={{
+        isNewsShown,
+        news: data?.title,
+        url: data?.url,
+        changeNewsDisplay,
+      }}>
       {children}
     </NewsContext.Provider>
   );

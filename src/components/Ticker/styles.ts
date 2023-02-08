@@ -29,6 +29,12 @@ export const useStyles: any = makeStyles(() => ({
     fontSize: '1.5rem',
     color: '#fff' as '#fff',
   },
+  link: {
+    color: 'inherit',
+    textDecoration: 'none',
+    fontFamily: "'Roboto', sans-serif",
+  },
+
   '@keyframes ticker': {
     '0%': {
       '-webkit-transform': 'translate3d(0, 0, 0)',

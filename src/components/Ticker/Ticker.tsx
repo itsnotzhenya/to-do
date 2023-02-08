@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-
 import { NewsContext } from '../NewsContextProvider';
 import { useStyles } from './styles';
 
 export const Ticker = () => {
-  const { isNewsShown } = useContext(NewsContext);
+  const { isNewsShown, news, url } = useContext(NewsContext);
 
   const classes: any = useStyles();
   const fallbackText =
@@ -13,7 +12,11 @@ export const Ticker = () => {
   return isNewsShown ? (
     <div className={classes.tickerWrapper}>
       <div className={classes.ticker}>
-        <div className={classes.text}>{fallbackText}</div>
+        <div className={classes.text}>
+          <a className={classes.link} target="_blank" href={url ?? '#'}>
+            {news || fallbackText}
+          </a>
+        </div>
       </div>
     </div>
   ) : null;
