@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
 import { AppBar, IconButton, Menu, MenuItem, Toolbar } from '@mui/material';
 import { SettingsIcon } from '../Icons/SettingsIcon';
-import { Text } from '../Text';
-import { Switch } from '../Switch';
-import { TextType } from '../../types';
 import { NewsContext } from '../NewsContextProvider';
+import { Switch, Text } from '../SharedComponents';
+import { TextType } from '../../types';
 
 export const Header = () => {
   const { isNewsShown, changeNewsDisplay } = useContext(NewsContext);

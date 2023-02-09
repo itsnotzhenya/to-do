@@ -4,8 +4,8 @@ import { useStyles } from './styles';
 
 export const Ticker = () => {
   const { isNewsShown, news, url } = useContext(NewsContext);
-
   const classes: any = useStyles();
+
   const fallbackText =
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante elit, faucibus et pellentesque id, aliquam a augue. Proin scelerisque nisl vel fringilla vulputate.';
 

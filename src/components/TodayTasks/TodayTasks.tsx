@@ -1,22 +1,32 @@
 import React from 'react';
+import styled from '@mui/styled-engine';
 import Checkbox from '@mui/material/Checkbox';
 import grey from '@mui/material/colors/grey';
-import { Text } from '../Text';
-import { TaskItem } from '../Task';
+import { TaskItem } from '../TaskItem';
+import { Card, Text } from '../SharedComponents';
 import { Task, TextType } from '../../types';
-import { Row, StyledCard } from './styles';
 
 type TodayTasksProps = {
   tasks: Task[];
   updateTaskStatus: (id: string, isDone: boolean) => void;
 };
 
+const Row = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'row' as 'row',
+  alignItems: 'center',
+  marginLeft: '20px',
+  marginBottom: '15px',
+}));
+
 export const TodayTasks = ({ tasks, updateTaskStatus }: TodayTasksProps) => {
+  const allDone = tasks.every((task) => task.isDone);
+
   return (
     <>
       <Row>
         <Checkbox
-          defaultChecked
+          checked={allDone}
           sx={{
             color: grey[100],
             '&.Mui-checked': {
@@ -26,7 +36,7 @@ export const TodayTasks = ({ tasks, updateTaskStatus }: TodayTasksProps) => {
         />
         <Text content="Today Tasks:" type={TextType.SECONDARY_TEXT} />
       </Row>
-      <StyledCard>
+      <Card>
         {tasks.map((task) => (
           <TaskItem
             task={task}
@@ -34,7 +44,7 @@ export const TodayTasks = ({ tasks, updateTaskStatus }: TodayTasksProps) => {
             updateTaskStatus={updateTaskStatus}
           />
         ))}
-      </StyledCard>
+      </Card>
     </>
   );
 };

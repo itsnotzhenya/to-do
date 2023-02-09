@@ -1,18 +1,20 @@
 import React from 'react';
-import { Switch } from '../Switch';
-import { Task as TaskType } from '../../types';
-import { Line } from '../Line';
-import { Text } from '../Text';
-import { TextType } from '../../types';
-import { Record, TaskRow, Block } from './styles';
+import styled from '@mui/styled-engine';
+import { CardRow, Switch, TaskRow, Text, Line } from '../SharedComponents';
+import { Task, TextType } from '../../types';
 
 type TaskProps = {
-  task: TaskType;
+  task: Task;
   updateTaskStatus: (id: string, isDone: boolean) => void;
 };
 
+const Block = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
 export const TaskItem = ({ task, updateTaskStatus }: TaskProps) => (
-  <Record>
+  <CardRow>
     <Block>
       <Line priority={task.priority} />
       <TaskRow>
@@ -30,5 +32,5 @@ export const TaskItem = ({ task, updateTaskStatus }: TaskProps) => (
       onChange={() => updateTaskStatus(task.id, !task.isDone)}
       inputProps={{ 'aria-label': 'controlled' }}
     />
-  </Record>
+  </CardRow>
 );

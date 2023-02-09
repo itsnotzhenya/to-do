@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
+import styled from '@mui/styled-engine';
 import { TasksContext } from '../TasksContextProvider';
 import { TodayTasks } from '../TodayTasks';
 import { FutureTasks } from '../FutureTasks';
 import { TaskRecord } from '../../types';
 import { groupBy, dateToEpoch } from '../../utils';
-import { List } from './styles';
+
+const List = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column' as 'column',
+}));
 
 export const TasksList = () => {
   const { tasks, updateTaskStatus } = useContext(TasksContext);

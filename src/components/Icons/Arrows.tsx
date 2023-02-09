@@ -8,7 +8,7 @@ const Outer = styled('div')(() => ({
   height: '24px',
   borderRadius: '50%',
   background: '#fff',
-  color: '#000',
+  color: '#282828',
   cursor: 'pointer',
 }));
 
