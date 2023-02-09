@@ -1,7 +1,7 @@
 import styled from '@mui/styled-engine';
-import Card from '@mui/material/Card';
+import MUICard from '@mui/material/Card';
 
-export const StyledCard = styled(Card)(() => ({
+export const Card = styled(MUICard)(() => ({
   color: '#fff',
   marginBottom: '32px',
   background: '#282828',

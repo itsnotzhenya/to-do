@@ -1,20 +1,26 @@
 import React from 'react';
+import styled from '@mui/styled-engine';
 import { Collapse } from '@mui/material';
-import { TaskItem } from '../Task';
-import { CardItem } from '../Task/CardItem';
+import { TaskItem } from '../TaskItem';
+import { ArrowDown, ArrowUp } from '../Icons/Arrows';
+import { Card, CardRow, TaskRow, Text, Line } from '../SharedComponents';
+import { Task, TextType } from '../../types';
 import { dateToEpoch, getFormattedDate } from '../../utils';
-import { Task } from '../../types';
-import { StyledCard } from './styles';
 
 type FutureTasksProps = {
   tasks: Task[];
   updateTaskStatus: (id: string, isDone: boolean) => void;
 };
 
+const Block = styled('div')(() => ({
+  display: 'flex',
+  alignItems: 'center',
+}));
+
 export const FutureTasks = ({ tasks, updateTaskStatus }: FutureTasksProps) => {
-  const [open, setOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   const handleClick = () => {
-    setOpen(!open);
+    setIsOpen(!isOpen);
   };
 
   const dateToDo = dateToEpoch(tasks[0].date);
@@ -23,17 +29,29 @@ export const FutureTasks = ({ tasks, updateTaskStatus }: FutureTasksProps) => {
   );
 
   return (
-    <StyledCard>
-      <CardItem
-        title={
-          dateToDo === tomorrow
-            ? 'Tomorrow Tasks'
-            : `${getFormattedDate(dateToDo)} Tasks`
-        }
-        isExpanded={open}
-        onClick={handleClick}
-      />
-      <Collapse in={open} timeout="auto" unmountOnExit>
+    <Card>
+      <CardRow>
+        <Block>
+          <Line />
+          <TaskRow>
+            <Text
+              content={
+                dateToDo === tomorrow
+                  ? 'Tomorrow Tasks'
+                  : `${getFormattedDate(dateToDo)} Tasks`
+              }
+              type={TextType.SECONDARY_TEXT}
+            />
+          </TaskRow>
+        </Block>
+        {isOpen ? (
+          <ArrowUp handleClick={handleClick} />
+        ) : (
+          <ArrowDown handleClick={handleClick} />
+        )}
+      </CardRow>
+
+      <Collapse in={isOpen} timeout="auto" unmountOnExit>
         {tasks.map((task) => (
           <TaskItem
             key={task.id}
@@ -42,6 +60,6 @@ export const FutureTasks = ({ tasks, updateTaskStatus }: FutureTasksProps) => {
           />
         ))}
       </Collapse>
-    </StyledCard>
+    </Card>
   );
 };
